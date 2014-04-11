@@ -10,6 +10,7 @@ public class MainProgram {
 
 	public static void main(String[] args) {
 		try {
+			//PRUEBA
 			BlWhProblem problem = new BlWhProblem();
 			problem.addInitialState(problem.gatherInitialPercepts());
 
