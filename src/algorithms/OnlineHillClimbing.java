@@ -37,15 +37,16 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 		for (Operator operator : problem.getOperators()) {
 			
 			Node successorState = new Node(operator.apply(node.getState()));
-			
+			bestSuccessor=new Node(operator.apply(successorState.getState()));
 			if (successorState.getState() != null) {
 				
 				successorState.setH(getEvaluationFunction().calculateH(successorState));
-
+				
 				if (successorState.getH() > bestSuccessor.getH()) {
 					bestSuccessor = successorState;
 					bestSuccessor.setOperator(operator.toString());
 				}
+			}else{
 			}
 		}
 

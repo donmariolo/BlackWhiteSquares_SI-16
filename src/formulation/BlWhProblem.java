@@ -83,7 +83,7 @@ public class BlWhProblem extends Problem {
 	//Pasamos en archivo .xml con la descripcion del entorno
 	public State gatherInitialPercepts() {
 		StateXMLReader stateXMLReader = new BlWhEntornoXML(
-				"data/blackwhitesquaresPartialPercepts1.xml");
+				"data/blackwhitesquares1.xml");
 		return stateXMLReader.getState();
 	}
 
