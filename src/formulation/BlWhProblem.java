@@ -15,8 +15,10 @@ import es.deusto.ingenieria.is.search.xml.StateXMLReader;
 
 public class BlWhProblem extends Problem {
 
-	// CORRECCIÓN: Tenéis que eliminar todos los warnings del código. De hecho,
+	// CORRECCIï¿½N: Tenï¿½is que eliminar todos los warnings del cï¿½digo. De hecho,
 	// este atributo es redundante.
+	
+	//PRUEBA SI FUNCIONA O NO 
 
 	public BlWhProblem() {
 		super();
@@ -142,7 +144,7 @@ public class BlWhProblem extends Problem {
 		entorno2.posicion = 17;
 
 		System.out.println('\n' + "---------Prueba POSICION--------");
-		System.out.println("Prueba del entorno 1, de tamaño = "
+		System.out.println("Prueba del entorno 1, de tamaï¿½o = "
 				+ entorno1.listaCuadrados.size() + ". Asignamos la posicion = "
 				+ entorno1.posicion);
 		if (p.isFinalState(entorno1))
@@ -150,7 +152,7 @@ public class BlWhProblem extends Problem {
 		else
 			System.out.println("NO es estado final");
 
-		System.out.println('\n' + "Prueba del entorno 2, de tamaño = "
+		System.out.println('\n' + "Prueba del entorno 2, de tamaï¿½o = "
 				+ entorno2.listaCuadrados.size() + ". Asignamos la posicion = "
 				+ entorno2.posicion);
 		if (p.isFinalState(entorno2))
