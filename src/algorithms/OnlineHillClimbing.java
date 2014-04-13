@@ -18,35 +18,43 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 	
 		Node currentNode = new Node(initialState);
 		currentNode.setH(getEvaluationFunction().calculateH(currentNode));
+		//currentNode.setG(getEvaluationFunction().calculateG(currentNode));
 
 		boolean local_best = false;
 		while (!local_best) {		
 			Node bestSuccessor = expand(currentNode, problem);
-			if (currentNode.getH()>=bestSuccessor.getH()) {
+			
+			//TODO: if f(CurrentNode)>=f(BestSuccessor)
+			if (currentNode.getH() >= bestSuccessor.getH()) {
 				local_best = true;
 			} else {
 				currentNode = bestSuccessor;
 			}
 		}
-		return currentNode;
+		
+		//TODO: return FinalState = CurrentNode's state
+		Node finalState = new Node (currentNode.getState());
+		return finalState;
 	}
 
 	protected Node expand(Node node, Problem problem) {
+		//TODO: BestSuccessor = CurrentNode's first successor
 		Node bestSuccessor = null;
 
 		for (Operator operator : problem.getOperators()) {
 			
-			Node successorState = new Node(operator.apply(node.getState()));
-			bestSuccessor=new Node(operator.apply(successorState.getState()));
-			if (successorState.getState() != null) {
+			Node successor = new Node(operator.apply(node.getState()));
+			bestSuccessor=new Node(operator.apply(successor.getState()));
+			if (successor.getState() != null) {
+					
+				//TODO: Compute f(Successor) + if f(Successor)>f(BestSuccessor)
+				successor.setH(this.getEvaluationFunction().calculateH(successor));
+				successor.setG(this.getEvaluationFunction().calculateG(successor));
 				
-				successorState.setH(getEvaluationFunction().calculateH(successorState));
-				
-				if (successorState.getH() > bestSuccessor.getH()) {
-					bestSuccessor = successorState;
+				if (successor.getH() > bestSuccessor.getH()) {
+					bestSuccessor = successor;
 					bestSuccessor.setOperator(operator.toString());
 				}
-			}else{
 			}
 		}
 
