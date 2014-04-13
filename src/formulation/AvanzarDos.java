@@ -16,7 +16,7 @@ public class AvanzarDos extends Operator {
 		BlWhEntorno nuevoEntorno = (BlWhEntorno) ((BlWhEntorno) state).clone();
 		int pos = nuevoEntorno.getPosicion();
 		nuevoEntorno.setPosicion(pos + 2);
-		// this.setName("AvanzarDos");
+		this.setName("AvanzarDos");
 
 		return nuevoEntorno;
 	}
@@ -48,7 +48,7 @@ public class AvanzarDos extends Operator {
 		}
 		System.out.println("Entorno: " + entorno.toString());
 
-		// NOTA: las posiciones van de la 0 a la N-1, siendo N el tamaño del
+		// NOTA: las posiciones van de la 0 a la N-1, siendo N el tamaï¿½o del
 		// entorno
 		AvanzarDos avance = new AvanzarDos();
 		System.out.println('\n' + "--------Prueba de avanzar DOS--------");

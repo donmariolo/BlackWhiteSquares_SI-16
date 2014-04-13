@@ -25,7 +25,7 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 			Node bestSuccessor = expand(currentNode, problem);
 			
 			//TODO: if f(CurrentNode)>=f(BestSuccessor)
-			if (currentNode.getH() >= bestSuccessor.getH()) {
+			if (currentNode.getH() < bestSuccessor.getH()) {
 				local_best = true;
 			} else {
 				currentNode = bestSuccessor;
@@ -45,11 +45,16 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 			
 			Node successor = new Node(operator.apply(node.getState()));
 			bestSuccessor=new Node(operator.apply(successor.getState()));
+			
 			if (successor.getState() != null) {
 					
 				//TODO: Compute f(Successor) + if f(Successor)>f(BestSuccessor)
 				successor.setH(this.getEvaluationFunction().calculateH(successor));
 				successor.setG(this.getEvaluationFunction().calculateG(successor));
+				
+				bestSuccessor.setH(this.getEvaluationFunction().calculateH(bestSuccessor));
+				bestSuccessor.setG(this.getEvaluationFunction().calculateG(successor)+1);
+				
 				
 				if (successor.getH() > bestSuccessor.getH()) {
 					bestSuccessor = successor;

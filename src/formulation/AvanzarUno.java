@@ -16,14 +16,14 @@ public class AvanzarUno extends Operator {
 		BlWhEntorno nuevoEntorno = (BlWhEntorno) ((BlWhEntorno) state).clone();
 		int pos = nuevoEntorno.posicion;
 		nuevoEntorno.setPosicion(pos + 1);
-		// this.setName("AvanzarUno");
+		this.setName("AvanzarUno");
 
 		return nuevoEntorno;
 	}
 
 	@Override
 	protected boolean isApplicable(State state) {
-		// siempre puedes avanzar uno, estés en el cuadrado en el que estés, por
+		// siempre puedes avanzar uno, estï¿½s en el cuadrado en el que estï¿½s, por
 		// eso no es necesario verificar si es blanco o negro
 		return true;
 	}
@@ -47,7 +47,7 @@ public class AvanzarUno extends Operator {
 		System.out.println("La posicion actual en el entorno es: "
 				+ entorno.posicion);
 		BlWhEntorno entorno1 = (BlWhEntorno) avance.effect(entorno);
-		System.out.println("La posición despues de avanzar UNO es: "
+		System.out.println("La posiciï¿½n despues de avanzar UNO es: "
 				+ entorno1.posicion);
 		System.out.println("\nEntorno: " + entorno1.toString());
 

@@ -16,7 +16,7 @@ public class AvanzarCuatro extends Operator {
 		BlWhEntorno nuevoEntorno = (BlWhEntorno) ((BlWhEntorno) state).clone();
 		int pos = nuevoEntorno.getPosicion();
 		nuevoEntorno.setPosicion(pos + 4);
-		// this.setName("AvanzarCuatro");
+		this.setName("AvanzarCuatro");
 
 		return nuevoEntorno;
 	}
