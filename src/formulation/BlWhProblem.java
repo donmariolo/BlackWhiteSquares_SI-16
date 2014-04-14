@@ -49,11 +49,25 @@ public class BlWhProblem extends Problem {
 	public boolean isFullyObserved(State state) {
 		
 		BlWhEntorno entorno = (BlWhEntorno) state;
+		int pos=entorno.posicion;
 		
-		if (entorno.listaCuadrados.get(1)==null)
+		//entorno.listaCuadrados.add(pos+1, new Cuadrado());
+		
+		if(entorno.getListaCuadrados().get(pos).getColor()==null){
+			
 			return false;
-		else
+		}
+			
+		else{
+			
 			return true;
+		}
+			
+		
+		
+		
+		
+		
 	}
 	
 	public State gatherPercepts(State state) {
@@ -61,14 +75,21 @@ public class BlWhProblem extends Problem {
 		BlWhEntorno entorno = (BlWhEntorno) state;
 		
 		if(!isFullyObserved(entorno)) {
-
+			
 			Scanner in = new Scanner(System.in);
 			String color;
-			System.out.print("Introduce el color del siguiente cuadrado: ");
+			System.out.print("Introduce el color del cuadrado: ");
 			color = in.next();
-			System.out.println("");
+			Cuadrado c= new Cuadrado(color);
 			
-			entorno.listaCuadrados.get(entorno.posicion).setColor(color);
+			
+			int pos= entorno.getPosicion();
+			System.out.println("POS:" + pos);
+			entorno.listaCuadrados.remove(pos);
+			entorno.listaCuadrados.add(pos, c);
+			
+			
+			
 			
 //			int a;
 //			System.out.println("Numero? ");
@@ -76,14 +97,14 @@ public class BlWhProblem extends Problem {
 //			System.out.println("El numero es " + a);
 	
 		}
-		
+		System.out.println(entorno.toString());
 		return entorno;
 	}
 	
 	//Pasamos en archivo .xml con la descripcion del entorno
 	public State gatherInitialPercepts() {
 		StateXMLReader stateXMLReader = new BlWhEntornoXML(
-				"data/blackwhitesquares1.xml");
+				"data/blackwhitesquaresPartialpercepts1.xml");
 		return stateXMLReader.getState();
 	}
 
