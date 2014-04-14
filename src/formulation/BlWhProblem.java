@@ -27,9 +27,9 @@ public class BlWhProblem extends Problem {
 	}
 
 	public void createOperators() {
-		this.addOperator(new AvanzarCuatro());
-		this.addOperator(new AvanzarDos());
 		this.addOperator(new AvanzarUno());
+		this.addOperator(new AvanzarDos());
+		this.addOperator(new AvanzarCuatro());
 
 	}
 
@@ -46,7 +46,7 @@ public class BlWhProblem extends Problem {
 	}
 	
 	//TODO submission 5: gatherInitialPercepts(),  isFullyObserved()
-	public boolean isFullyObservable(State state) {
+	public boolean isFullyObserved(State state) {
 		
 		BlWhEntorno entorno = (BlWhEntorno) state;
 		
@@ -60,7 +60,7 @@ public class BlWhProblem extends Problem {
 		
 		BlWhEntorno entorno = (BlWhEntorno) state;
 		
-		if(!isFullyObservable(entorno)) {
+		if(!isFullyObserved(entorno)) {
 
 			Scanner in = new Scanner(System.in);
 			String color;

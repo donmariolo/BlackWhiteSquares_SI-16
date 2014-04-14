@@ -15,54 +15,69 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 
 	@Override
 	public Node search(Problem problem, State initialState) {
-	
 		Node currentNode = new Node(initialState);
-		currentNode.setH(getEvaluationFunction().calculateH(currentNode));
-		//currentNode.setG(getEvaluationFunction().calculateG(currentNode));
-
 		boolean local_best = false;
-		while (!local_best) {		
-			Node bestSuccessor = expand(currentNode, problem);
+		while(!problem.isFinalState(currentNode.getState())|| !local_best){
 			
-			//TODO: if f(CurrentNode)>=f(BestSuccessor)
-			if (currentNode.getH() < bestSuccessor.getH()) {
-				local_best = true;
-			} else {
-				currentNode = bestSuccessor;
+				currentNode.setH(getEvaluationFunction().calculateH(currentNode));
+				currentNode.setG(getEvaluationFunction().calculateG(currentNode));
+				Node bestSuccessor = expand(currentNode, problem);
+				bestSuccessor.setH(this.getEvaluationFunction().calculateH(bestSuccessor));
+				bestSuccessor.setG(this.getEvaluationFunction().calculateG(bestSuccessor));
+				
+				
+				if (currentNode.compareTo(bestSuccessor) == -1 || currentNode.compareTo(bestSuccessor) == 0) {
+					System.out.println("ENTRAAAAA");
+					
+					local_best = true;
+					
+
+					
+				} else {
+					currentNode = bestSuccessor;
+					
+					System.out.println(currentNode.getH());
+				}
 			}
-		}
 		
-		//TODO: return FinalState = CurrentNode's state
-		Node finalState = new Node (currentNode.getState());
+		
+		
+		Node finalState = new Node(currentNode.getState());
+		
 		return finalState;
+		
+
+
 	}
 
 	protected Node expand(Node node, Problem problem) {
-		//TODO: BestSuccessor = CurrentNode's first successor
-		Node bestSuccessor = null;
-
-		for (Operator operator : problem.getOperators()) {
+		// TODO: BestSuccessor = CurrentNode's first successor
+		Operator first=problem.getOperators().get(0);
+		Node bestSuccessor = new Node(first.apply(node.getState()));
+		
+		for (int i = 1; i < problem.getOperators().size(); i++) {
 			
-			Node successor = new Node(operator.apply(node.getState()));
-			bestSuccessor=new Node(operator.apply(successor.getState()));
 			
-			if (successor.getState() != null) {
-					
-				//TODO: Compute f(Successor) + if f(Successor)>f(BestSuccessor)
+			Operator o=problem.getOperators().get(i);
+			Node successor = new Node(o.apply(node.getState()));
+			
+			if (successor.getState() != null){
+				
+				// TODO: Compute f(Successor) + if f(Successor)>f(BestSuccessor)
 				successor.setH(this.getEvaluationFunction().calculateH(successor));
 				successor.setG(this.getEvaluationFunction().calculateG(successor));
-				
 				bestSuccessor.setH(this.getEvaluationFunction().calculateH(bestSuccessor));
-				bestSuccessor.setG(this.getEvaluationFunction().calculateG(successor)+1);
+				bestSuccessor.setG(this.getEvaluationFunction().calculateG(successor));
 				
-				
-				if (successor.getH() > bestSuccessor.getH()) {
+				if (successor.compareTo(bestSuccessor) == -1) {
 					bestSuccessor = successor;
-					bestSuccessor.setOperator(operator.toString());
+					//bestSuccessor.setOperator(o.toString());
+					
 				}
 			}
+		
 		}
-
+		System.out.println("expand:" + bestSuccessor.toString());
 		return bestSuccessor;
 	}
 

@@ -12,7 +12,7 @@ public class BlWhFuncionEvaluacion extends EvaluationFunction {
 
 		resultado = (state.posicion + 1) / 4;
 
-		return (resultado + 1);
+		return (resultado);
 
 	}
 
