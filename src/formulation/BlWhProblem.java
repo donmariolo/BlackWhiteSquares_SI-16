@@ -76,9 +76,10 @@ public class BlWhProblem extends Problem {
 		
 		if(!isFullyObserved(entorno)) {
 			
+			@SuppressWarnings("resource")
 			Scanner in = new Scanner(System.in);
 			String color;
-			System.out.print("Introduce el color del cuadrado: ");
+			System.out.print("Introduce el color del cuadrado: (B/N)");
 			color = in.next();
 			Cuadrado c= new Cuadrado(color);
 			
