@@ -18,73 +18,83 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 	public Node search(Problem problem, State initialState) {
 		Node currentNode = new Node(initialState);
 		boolean local_best = false;
+		
+		while(!problem.isFinalState(currentNode.getState()) && !local_best){
+				
+				currentNode.setH(getEvaluationFunction().calculateH(currentNode));
+				
+				
+				Node bestSuccessor = expand(currentNode, problem);
+				bestSuccessor.setH(this.getEvaluationFunction().calculateH(bestSuccessor));
+				
+				
+				
+				
+				if (currentNode.compareTo(bestSuccessor) == -1 || currentNode.compareTo(bestSuccessor) == 0) {
+					
+					System.out.println("Entra");
+					local_best = true;
+					//currentNode = bestSuccessor;
 
-		while (!problem.isFinalState(currentNode.getState()) && !local_best) {
-
-			currentNode.setH(getEvaluationFunction().calculateH(currentNode));
-
-			Node bestSuccessor = expand(currentNode, problem);
-			bestSuccessor.setH(this.getEvaluationFunction().calculateH(
-					bestSuccessor));
-
-			if (currentNode.compareTo(bestSuccessor) == -1
-					|| currentNode.compareTo(bestSuccessor) == 0) {
-
-				System.out.println("Entra");
-				local_best = true;
-				// currentNode = bestSuccessor;
-
-			} else {
-				currentNode = bestSuccessor;
-
+					
+					
+				} else {
+					currentNode = bestSuccessor;
+					BlWhEntorno nuevoEntorno = (BlWhEntorno) currentNode.getState();
+					int pos=  nuevoEntorno.getPosicion();
+					System.out.println(pos);
+				}
+				
 			}
-
-		}
-
+		
+		
+		
 		Node finalState = new Node(currentNode.getState());
-
+		
 		return finalState;
+		
+
 
 	}
 
 	protected Node expand(Node node, Problem problem) {
 		// TODO: BestSuccessor = CurrentNode's first successor
-
-		Operator first = problem.getOperators().get(0);
-
+		
+		Operator first=problem.getOperators().get(0);
+		
 		Node bestSuccessor = new Node(first.apply(node.getState()));
-
+		
 		for (int i = 1; i < problem.getOperators().size(); i++) {
-
-			Operator o = problem.getOperators().get(i);
-
-			Node successor = new Node(o.apply(node.getState()));
-
-			if (successor.getState() != null) {
-
+			
+			
+			first=problem.getOperators().get(i);
+			
+			Node successor = new Node(first.apply(node.getState()));
+			
+			if (successor.getState() != null){
+				
 				// TODO: Compute f(Successor) + if f(Successor)>f(BestSuccessor)
-				successor.setH(this.getEvaluationFunction().calculateH(
-						successor));
-
-				bestSuccessor.setH(this.getEvaluationFunction().calculateH(
-						bestSuccessor));
-
-				if (successor.compareTo(bestSuccessor) == -1) {
+				successor.setH(this.getEvaluationFunction().calculateH(successor));
+				
+				bestSuccessor.setH(this.getEvaluationFunction().calculateH(bestSuccessor));
+				
+				
+				if (successor.compareTo(bestSuccessor) == -1 ) {
 					bestSuccessor = successor;
-					bestSuccessor.setOperator(o.getName());
-
-					// bestSuccessor.setOperator(o.toString());
-
+					bestSuccessor.setOperator(first.getName());
+					bestSuccessor.setH(this.getEvaluationFunction().calculateH(bestSuccessor));
+					
+					//bestSuccessor.setOperator(o.toString());
+					
 				}
 			}
-
+		
 		}
-		if (!problem.isFullyObserved(bestSuccessor.getState())) {
-
-			@SuppressWarnings("unused")
-			BlWhEntorno e = (BlWhEntorno) problem.gatherPercepts(bestSuccessor
-					.getState());
-
+		if(!problem.isFullyObserved(bestSuccessor.getState())){
+			
+			BlWhEntorno e=(BlWhEntorno) problem.gatherPercepts(bestSuccessor.getState());
+			
+			e.toString();
 		}
 		System.out.println("expand:" + bestSuccessor.toString());
 		return bestSuccessor;
