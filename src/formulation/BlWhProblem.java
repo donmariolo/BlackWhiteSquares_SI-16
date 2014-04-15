@@ -74,7 +74,7 @@ public class BlWhProblem extends Problem {
 		
 		BlWhEntorno entorno = (BlWhEntorno) state;
 		
-		if(!isFullyObserved(entorno)) {
+		
 			
 			@SuppressWarnings("resource")
 			Scanner in = new Scanner(System.in);
@@ -85,9 +85,9 @@ public class BlWhProblem extends Problem {
 			
 			
 			int pos= entorno.getPosicion();
-			System.out.println("POS:" + pos);
-			entorno.listaCuadrados.remove(pos);
-			entorno.listaCuadrados.add(pos, c);
+			
+			//entorno.listaCuadrados.remove(pos);
+			entorno.listaCuadrados.set(pos, c);
 			
 			
 			
@@ -97,8 +97,8 @@ public class BlWhProblem extends Problem {
 //			a = in.nextInt();
 //			System.out.println("El numero es " + a);
 	
-		}
-		System.out.println(entorno.toString());
+		
+		
 		return entorno;
 	}
 	

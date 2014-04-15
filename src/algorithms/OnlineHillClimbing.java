@@ -40,9 +40,8 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 					
 				} else {
 					currentNode = bestSuccessor;
-					BlWhEntorno nuevoEntorno = (BlWhEntorno) currentNode.getState();
-					int pos=  nuevoEntorno.getPosicion();
-					System.out.println(pos);
+					
+					
 				}
 				
 			}
@@ -67,9 +66,9 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 		for (int i = 1; i < problem.getOperators().size(); i++) {
 			
 			
-			first=problem.getOperators().get(i);
+			Operator o=problem.getOperators().get(i);
 			
-			Node successor = new Node(first.apply(node.getState()));
+			Node successor = new Node(o.apply(node.getState()));
 			
 			if (successor.getState() != null){
 				
@@ -81,7 +80,7 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 				
 				if (successor.compareTo(bestSuccessor) == -1) {
 					bestSuccessor = successor;
-					bestSuccessor.setOperator(first.getName());
+					bestSuccessor.setOperator(o.getName());
 					
 					//bestSuccessor.setOperator(o.toString());
 					
@@ -91,9 +90,10 @@ public class OnlineHillClimbing extends HeuristicSearchMethod {
 		}
 		if(!problem.isFullyObserved(bestSuccessor.getState())){
 			
+			@SuppressWarnings("unused")
 			BlWhEntorno e=(BlWhEntorno) problem.gatherPercepts(bestSuccessor.getState());
 			
-			e.toString();
+			
 		}
 		System.out.println("expand:" + bestSuccessor.toString());
 		return bestSuccessor;
