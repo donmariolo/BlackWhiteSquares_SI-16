@@ -15,10 +15,11 @@ import es.deusto.ingenieria.is.search.xml.StateXMLReader;
 
 public class BlWhProblem extends Problem {
 
-	// CORRECCI�N: Ten�is que eliminar todos los warnings del c�digo. De hecho,
+	// CORRECCI�N: Ten�is que eliminar todos los warnings del c�digo. De
+	// hecho,
 	// este atributo es redundante.
-	
-	//PRUEBA SI FUNCIONA O NO 
+
+	// PRUEBA SI FUNCIONA O NO
 
 	public BlWhProblem() {
 		super();
@@ -30,13 +31,11 @@ public class BlWhProblem extends Problem {
 		this.addOperator(new AvanzarUno());
 		this.addOperator(new AvanzarDos());
 		this.addOperator(new AvanzarCuatro());
-
 	}
 
 	public boolean isFinalState(State state) {
 		BlWhEntorno nuevoEntorno = (BlWhEntorno) state;
 		if (state != null && state instanceof BlWhEntorno) {
-
 			if (nuevoEntorno.listaCuadrados.size() > nuevoEntorno.posicion)
 				return false;
 			else
@@ -44,65 +43,46 @@ public class BlWhProblem extends Problem {
 		} else
 			return false;
 	}
-	
-	//TODO submission 5: gatherInitialPercepts(),  isFullyObserved()
+
+	// TODO submission 5: gatherInitialPercepts(), isFullyObserved()
 	public boolean isFullyObserved(State state) {
-		
+
 		BlWhEntorno entorno = (BlWhEntorno) state;
-		int pos=entorno.posicion;
-		
-		//entorno.listaCuadrados.add(pos+1, new Cuadrado());
-		
-		if(entorno.getListaCuadrados().get(pos).getColor()==null){
-			
+		int pos = entorno.posicion;
+
+		// entorno.listaCuadrados.add(pos+1, new Cuadrado());
+
+		if (entorno.getListaCuadrados().get(pos).getColor() == null) {
+
 			return false;
 		}
-			
-		else{
-			
+
+		else {
+
 			return true;
 		}
-			
-		
-		
-		
-		
-		
+
 	}
-	
+
 	public State gatherPercepts(State state) {
-		
+
 		BlWhEntorno entorno = (BlWhEntorno) state;
+
+		int pos = entorno.getPosicion();
 		
+		@SuppressWarnings("resource")
+		Scanner in = new Scanner(System.in);
+		String color;
+		System.out.print("Introduce el color del cuadrado (B/N) que se encuentra en la posicion " + pos + ": ");
+		color = in.next();
 		
-			
-			@SuppressWarnings("resource")
-			Scanner in = new Scanner(System.in);
-			String color;
-			System.out.print("Introduce el color del cuadrado: (B/N)");
-			color = in.next();
-			Cuadrado c= new Cuadrado(color);
-			
-			
-			int pos= entorno.getPosicion();
-			
-			//entorno.listaCuadrados.remove(pos);
-			entorno.listaCuadrados.set(pos, c);
-			
-			
-			
-			
-//			int a;
-//			System.out.println("Numero? ");
-//			a = in.nextInt();
-//			System.out.println("El numero es " + a);
-	
-		
-		
+		Cuadrado c = new Cuadrado(color);
+		entorno.listaCuadrados.set(pos, c);
+
 		return entorno;
 	}
-	
-	//Pasamos en archivo .xml con la descripcion del entorno
+
+	// Pasamos en archivo .xml con la descripcion del entorno
 	public State gatherInitialPercepts() {
 		StateXMLReader stateXMLReader = new BlWhEntornoXML(
 				"data/blackwhitesquaresPartialpercepts1.xml");
@@ -152,7 +132,7 @@ public class BlWhProblem extends Problem {
 	}
 
 	public static void main(String[] args) {
-		
+
 		BlWhProblem p = new BlWhProblem();
 
 		System.out.println("Numero de operadores en la lista: "

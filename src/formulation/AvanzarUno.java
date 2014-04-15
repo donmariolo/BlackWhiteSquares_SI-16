@@ -23,7 +23,8 @@ public class AvanzarUno extends Operator {
 
 	@Override
 	protected boolean isApplicable(State state) {
-		// siempre puedes avanzar uno, est�s en el cuadrado en el que est�s, por
+		// siempre puedes avanzar uno, est�s en el cuadrado en el que est�s,
+		// por
 		// eso no es necesario verificar si es blanco o negro
 		return true;
 	}

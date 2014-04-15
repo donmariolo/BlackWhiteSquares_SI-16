@@ -32,13 +32,12 @@ public class Cuadrado {
 			return false;
 		}
 	}
-	
+
 	public Cuadrado clone() {
 		Cuadrado cuadrado = new Cuadrado(this.color);
 
 		return cuadrado;
 	}
-
 
 	public static void main(String[] args) {
 		// Creamos dos cuadrados blancos

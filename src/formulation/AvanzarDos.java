@@ -5,7 +5,6 @@ import es.deusto.ingenieria.is.search.formulation.State;
 
 public class AvanzarDos extends Operator {
 
-
 	public AvanzarDos() {
 		super();
 		this.setName("AvanzarDos");

@@ -38,8 +38,8 @@ public class BlWhEntorno extends State {
 		BlWhEntorno nuevoEntorno = new BlWhEntorno(this.getListaCuadrados()
 				.size());
 
-		nuevoEntorno.listaCuadrados=this.listaCuadrados;
-		
+		nuevoEntorno.listaCuadrados = this.listaCuadrados;
+
 		nuevoEntorno.posicion = this.posicion;
 		// Cuadrado c = new Cuadrado();
 		// int size = nuevoEntorno.getListaCuadrados().size();

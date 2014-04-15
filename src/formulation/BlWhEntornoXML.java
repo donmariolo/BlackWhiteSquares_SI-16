@@ -22,8 +22,8 @@ public class BlWhEntornoXML extends StateXMLReader {
 	public State getState() {
 		BlWhEntorno e = new BlWhEntorno(size);
 		e.setListaCuadrados(listaCuadrados);
-		for(int i=listaCuadrados.size();i<size;i++){
-			Cuadrado c= new Cuadrado();
+		for (int i = listaCuadrados.size(); i < size; i++) {
+			Cuadrado c = new Cuadrado();
 			this.listaCuadrados.add(i, c);
 		}
 		return e;
@@ -36,15 +36,15 @@ public class BlWhEntornoXML extends StateXMLReader {
 		try {
 			if (qName.equals("is:lineofsquares")) {
 				listaCuadrados = new ArrayList<Cuadrado>();
-				this.size= Integer.parseInt(attributes.getValue("length"));
+				this.size = Integer.parseInt(attributes.getValue("length"));
 			} else if (qName.equals("is:white")) {
 				Cuadrado blanco = new Cuadrado("B");
 				this.listaCuadrados.add(blanco);
 			} else if (qName.equals("is:black")) {
 				Cuadrado negro = new Cuadrado("N");
 				this.listaCuadrados.add(negro);
-			}else{
-				
+			} else {
+
 			}
 		} catch (Exception ex) {
 			System.out.println(this.getClass().getName() + ".startElement(): "
@@ -53,7 +53,8 @@ public class BlWhEntornoXML extends StateXMLReader {
 
 	}
 
-	// CORRECCI�N: La invocaci�n al m�todo solve() tiene que estar en una clase
+	// CORRECCI�N: La invocaci�n al m�todo solve() tiene que estar en una
+	// clase
 	// independiente que se llame MainProgram.
 	public static void main(String[] args) {
 
