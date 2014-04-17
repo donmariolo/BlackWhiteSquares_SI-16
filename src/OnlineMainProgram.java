@@ -4,8 +4,6 @@ import formulation.BlWhProblem;
 
 public class OnlineMainProgram {
 
-	// TODO: cambiar manualmente el archivo XML en el metodo gatherInitialPercepts() de la clase BlWhProblem
-
 	public static void main(String[] args) {
 		try {
 			BlWhProblem problem = new BlWhProblem();

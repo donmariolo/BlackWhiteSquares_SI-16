@@ -59,7 +59,7 @@ public class ASearch extends HeuristicSearchMethod {
 			if (currentState != null) {
 
 				for (Operator operator : problem.getOperators()) {
-					// TODO: successorNode = new Node(state);
+
 					successorState = operator.apply(currentState);
 
 					if (successorState != null) {

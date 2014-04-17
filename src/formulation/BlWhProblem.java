@@ -15,12 +15,6 @@ import es.deusto.ingenieria.is.search.xml.StateXMLReader;
 
 public class BlWhProblem extends Problem {
 
-	// CORRECCI�N: Ten�is que eliminar todos los warnings del c�digo. De
-	// hecho,
-	// este atributo es redundante.
-
-	// PRUEBA SI FUNCIONA O NO
-
 	public BlWhProblem() {
 		super();
 
@@ -44,7 +38,6 @@ public class BlWhProblem extends Problem {
 			return false;
 	}
 
-	// TODO submission 5: gatherInitialPercepts(), isFullyObserved()
 	public boolean isFullyObserved(State state) {
 
 		BlWhEntorno entorno = (BlWhEntorno) state;
@@ -69,13 +62,15 @@ public class BlWhProblem extends Problem {
 		BlWhEntorno entorno = (BlWhEntorno) state;
 
 		int pos = entorno.getPosicion();
-		
+
 		@SuppressWarnings("resource")
 		Scanner in = new Scanner(System.in);
 		String color;
-		System.out.print("Introduce el color del cuadrado (B/N) que se encuentra en la posicion " + pos + ": ");
+		System.out
+				.print("Introduce el color del cuadrado (B/N) que se encuentra en la posicion "
+						+ pos + ": ");
 		color = in.next();
-		
+
 		Cuadrado c = new Cuadrado(color);
 		entorno.listaCuadrados.set(pos, c);
 
